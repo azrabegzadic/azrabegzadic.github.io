@@ -259,3 +259,9 @@ body {
     background-color: var(--theme-color);
     text-decoration: none;
 }
+
+.pub_note {
+    color: #999999;
+    font-size: 13px;
+    margin-top: -6px;
+}
