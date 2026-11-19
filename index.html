@@ -27,7 +27,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Site styles -->
-    <link href="css/style.css?v=5" rel="stylesheet">
+    <link href="css/style.css?v=6" rel="stylesheet">
 
     <!-- Fonts and icons (self-hosted) -->
     <link href="css/fonts.css" rel="stylesheet">
@@ -37,6 +37,17 @@
 </head>
 
 <body>
+    <!-- Top bar for phones; appears after scrolling past the photo -->
+    <nav class="sticky-nav" id="sticky-nav" aria-hidden="true">
+        <div class="sticky-nav-content">
+            <a class="sticky-nav-name" href="#" id="sticky-nav-name">Azra Begzadić</a>
+            <div class="sticky-nav-links">
+                <a href="mailto:abegzadic@ucsd.edu">Email</a>
+                <a href="https://scholar.google.com/citations?user=kUZCmIUAAAAJ&amp;hl=en">Scholar</a>
+            </div>
+        </div>
+    </nav>
+
     <div id="hugewrapper">
         <div id="wrapper">
             <!-- Sidebar -->
@@ -46,7 +57,7 @@
                         Azra Begzadić
                     </li>
                     <li class="below-brand">
-                        <img src="assets/profile.jpg" alt="Azra's profile picture" style="border-radius:50%;width:70%">
+                        <img class="profile-pic" src="assets/profile.jpg" alt="Azra's profile picture">
                     </li>
                     <li class="icon">
                         <a class="icon" href="mailto:abegzadic@ucsd.edu" aria-label="Email"><i class="fa fa-envelope fa-fw"></i></a>
@@ -61,10 +72,6 @@
 
             <!-- Page Content -->
             <div id="page-content-wrapper">
-                <div class="visible-xs visible-sm">
-                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" aria-label="Menu"><span
-                            class="glyphicon glyphicon-menu-hamburger"></span></a>
-                </div>
                 <section id="bio">
                     <div class="container-fluid">
                         <div class="row">
@@ -164,12 +171,22 @@
         <footer class="site-footer">© 2026 by Azra Begzadić</footer>
     </div>
 
-    <!-- Menu toggle (small screens) -->
+    <!-- Show the top bar on phones once the photo and name are scrolled out of view -->
     <script>
-        document.getElementById("menu-toggle").addEventListener("click", function (e) {
-            e.preventDefault();
-            document.getElementById("wrapper").classList.toggle("toggled");
-        });
+        (function () {
+            var nav = document.getElementById("sticky-nav");
+            var header = document.querySelector(".sidebar-nav");
+            document.getElementById("sticky-nav-name").addEventListener("click", function (e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+            if (!("IntersectionObserver" in window)) return;
+            new IntersectionObserver(function (entries) {
+                var show = !entries[0].isIntersecting;
+                nav.classList.toggle("visible", show);
+                nav.setAttribute("aria-hidden", show ? "false" : "true");
+            }).observe(header);
+        })();
     </script>
 </body>
 

@@ -38,40 +38,14 @@ body {
     padding: 20px 0;
 }
 
-/* Toggle styles */
+/* Layout. Phones (narrow screens) first: photo, name and icons stacked at the top. */
 
 #wrapper {
     width: 100%;
     flex: 1 0 auto;
-    padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
     margin-left: auto;
     margin-right: auto;
     max-width: 1230px;
-}
-
-#wrapper.toggled {
-    padding-left: 250px;
-}
-
-#sidebar-wrapper {
-    z-index: 1000;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-    width: 250px;
 }
 
 #page-content-wrapper {
@@ -80,63 +54,48 @@ body {
     padding: 15px;
 }
 
-#wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -250px;
-}
-
-/* Sidebar */
-
 .sidebar-nav {
-    position: fixed;
-    top: 0;
-    width: 250px;
     margin: 0;
-    padding: 0;
+    padding: 32px 0 0;
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sidebar-nav li {
-    text-indent: 20px;
-    margin-left: 50px;
     font-size: 25px;
     line-height: 28px;
     margin-bottom: 2px;
     font-family: 'Lato', sans-serif;
 }
 
-/* Name sits right above the picture, centered on it (picture center is 140px from the sidebar's left edge) */
 .sidebar-nav > .sidebar-brand {
-    margin-left: 0;
-    width: 280px;
-    text-indent: 0;
-    text-align: center;
     font-size: 28px;
     line-height: 34px;
-    margin-top: 100px;
     margin-bottom: 12px;
     white-space: nowrap;
     font-family: 'Lato', sans-serif;
 }
 
+/* On phones the photo comes first */
 .sidebar-nav > .below-brand {
-    font-size: 12px;
-    color: var(--theme-color);
+    order: -1;
     margin-bottom: 15px;
 }
 
-/* Icons sit right under the picture, centered on it */
+.profile-pic {
+    border-radius: 50%;
+    width: 150px;
+}
+
 .sidebar-nav > .icon {
-    margin-left: 20px;
-    width: 240px;
     white-space: nowrap;
-    text-indent: 0;
     text-align: center;
     margin-bottom: 8px;
 }
 
 .sidebar-nav > .icon a i {
-    text-indent: 0;
     font-size: 24px;
     line-height: 30px;
     margin: 0 4px;
@@ -147,46 +106,115 @@ body {
     color: orange;
 }
 
-/* Hide the sidebar while it is closed, so the end of a long name does not peek in at the left edge */
-@media (max-width: 767px) {
-    #wrapper:not(.toggled) .sidebar-nav {
-        visibility: hidden;
-        transition: visibility 0s 0.5s;
-    }
-}
-
+/* Wide screens: fixed sidebar on the left, name above the photo */
 @media (min-width: 768px) {
-    #wrapper.toggled .sidebar-nav {
-        visibility: hidden;
-        transition: visibility 0s 0.5s;
-    }
-
     #wrapper {
         padding-left: 250px;
     }
 
-    #wrapper.toggled {
-        padding-left: 0;
-    }
-
     #sidebar-wrapper {
+        z-index: 1000;
         width: 250px;
+        height: 100%;
+        margin-left: -250px;
+        overflow-y: auto;
     }
 
-    #wrapper.toggled #sidebar-wrapper {
-        width: 0;
+    .sidebar-nav {
+        position: fixed;
+        top: 0;
+        width: 250px;
+        padding: 0;
+        display: block;
+    }
+
+    .sidebar-nav li {
+        text-indent: 20px;
+        margin-left: 50px;
+    }
+
+    /* Name and icons are centered on the photo (photo center is 140px from the sidebar's left edge) */
+    .sidebar-nav > .sidebar-brand {
+        margin-left: 0;
+        width: 280px;
+        text-indent: 0;
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    .profile-pic {
+        width: 70%;
+    }
+
+    .sidebar-nav > .icon {
+        margin-left: 20px;
+        width: 240px;
+        text-indent: 0;
     }
 
     #page-content-wrapper {
         padding: 20px;
-        position: relative;
         padding-left: 100px;
     }
+}
 
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
+/* Top bar on phones: slides in once the photo and name scroll out of view */
+.sticky-nav {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .sticky-nav {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1100;
+        background: rgba(255, 255, 255, 0.85);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid #e0e0e0;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
     }
+
+    .sticky-nav.visible {
+        transform: translateY(0);
+    }
+}
+
+.sticky-nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+}
+
+.sticky-nav-name,
+.sticky-nav-name:hover,
+.sticky-nav-name:focus {
+    color: #333333;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.sticky-nav-links {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+}
+
+.sticky-nav-links a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.sticky-nav-links a:hover,
+.sticky-nav-links a:focus,
+.sticky-nav-links a:active {
+    color: var(--link-hover-color);
+    text-decoration: none;
 }
 
 /* Content */
@@ -207,12 +235,12 @@ body {
 }
 
 #bio {
-    margin-top: 30px;
+    margin-top: 20px;
     height: 40%;
 }
 
 /* On wide screens, line the first line of the bio up with the name */
-@media (min-width: 992px) {
+@media (min-width: 768px) {
     #bio {
         margin-top: 87px;
     }
