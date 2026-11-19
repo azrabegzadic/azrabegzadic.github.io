@@ -237,6 +237,15 @@ body {
 #bio {
     margin-top: 20px;
     height: 40%;
+    text-align: justify;
+}
+
+/* On phones, let long words break with a hyphen so justified lines have smaller gaps */
+@media (max-width: 767px) {
+    #bio {
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
 }
 
 /* On wide screens, line the first line of the bio up with the name */
