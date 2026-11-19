@@ -125,8 +125,9 @@ body {
 
 /* Icons sit right under the picture, centered on it */
 .sidebar-nav > .icon {
-    margin-left: 70px;
-    width: 140px;
+    margin-left: 20px;
+    width: 240px;
+    white-space: nowrap;
     text-indent: 0;
     text-align: center;
     margin-bottom: 8px;
@@ -137,7 +138,7 @@ body {
     font-size: 24px;
     line-height: 30px;
     margin: 0 7px;
-    color: black;
+    color: #333333; /* same as the name */
 }
 
 .sidebar-nav > .icon a i:hover {
