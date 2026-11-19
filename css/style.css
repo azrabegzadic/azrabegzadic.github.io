@@ -6,6 +6,8 @@
 
 :root {
     --theme-color: green;
+    --link-color: #afc9e6;       /* light blue */
+    --link-hover-color: #e6afca; /* matching light pink */
 }
 
 body {
@@ -217,14 +219,14 @@ body {
 }
 
 #bio a {
-    color: var(--theme-color);
+    color: var(--link-color);
     text-decoration: none;
     border-bottom: 1px dotted;
 }
 
-/* On hover, links turn light blue (no green box) */
+/* On hover, links turn pink (no box behind them) */
 #bio a:hover {
-    color: #afc9e6;
+    color: var(--link-hover-color);
     background-color: transparent;
     text-decoration: none;
 }
@@ -250,13 +252,13 @@ body {
 }
 
 .publication a {
-    color: var(--theme-color);
+    color: var(--link-color);
     text-decoration: none;
     border-bottom: 1px dotted;
 }
 
 .publication a:hover {
-    color: #afc9e6;
+    color: var(--link-hover-color);
     background-color: transparent;
     text-decoration: none;
 }
