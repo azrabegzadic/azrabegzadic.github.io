@@ -222,11 +222,11 @@ body {
     border-bottom: 1px dotted;
 }
 
+/* On hover, links turn light blue (no green box) */
 #bio a:hover {
-    color: white;
-    background-color: var(--theme-color);
+    color: #afc9e6;
+    background-color: transparent;
     text-decoration: none;
-    border-bottom: none;
 }
 
 .fa {
@@ -256,8 +256,8 @@ body {
 }
 
 .publication a:hover {
-    color: white;
-    background-color: var(--theme-color);
+    color: #afc9e6;
+    background-color: transparent;
     text-decoration: none;
 }
 
