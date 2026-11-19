@@ -240,11 +240,14 @@ body {
     text-align: justify;
 }
 
-/* On phones, let long words break with a hyphen so justified lines have smaller gaps */
+/* On phones: slightly smaller text, hyphenate long words so justified lines have smaller gaps,
+   and avoid leaving a single word alone on the last line */
 @media (max-width: 767px) {
     #bio {
+        font-size: 14px;
         -webkit-hyphens: auto;
         hyphens: auto;
+        text-wrap: pretty;
     }
 }
 
