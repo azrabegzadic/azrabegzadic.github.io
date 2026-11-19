@@ -1,6 +1,6 @@
 # azrabegzadic.github.io
 
-Personal website of Azra Begzadic. A single static page, no build step.
+Personal website of Azra Begzadić. A single static page, no build step.
 
 - `index.html`: all content (bio, links, publications)
 - `css/style.css`: layout, colors and font sizes

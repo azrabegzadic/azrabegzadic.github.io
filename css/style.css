@@ -16,9 +16,31 @@ body {
     letter-spacing: 1px;
 }
 
+/* Footer stays at the bottom of the window, or below the content on long pages */
+html,
+body {
+    height: 100%;
+}
+
+#hugewrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.site-footer {
+    flex-shrink: 0;
+    text-align: center;
+    font-size: 12px;
+    color: black;
+    padding: 20px 0;
+}
+
 /* Toggle styles */
 
 #wrapper {
+    width: 100%;
+    flex: 1 0 auto;
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -52,7 +74,7 @@ body {
 
 #page-content-wrapper {
     width: 100%;
-    position: absolute;
+    position: relative;
     padding: 15px;
 }
 
@@ -97,20 +119,20 @@ body {
     margin-bottom: 15px;
 }
 
-.sidebar-nav > .copyright {
-    font-size: 12px;
-    margin-bottom: 30px;
-    color: black;
+/* Icons sit right under the picture, centered on it */
+.sidebar-nav > .icon {
+    margin-left: 70px;
+    width: 140px;
+    text-indent: 0;
+    text-align: center;
+    margin-bottom: 8px;
 }
 
 .sidebar-nav > .icon a i {
-    text-indent: 20px;
+    text-indent: 0;
     font-size: 18px;
     line-height: 25px;
-    margin-bottom: 2px;
-    margin-top: 50px;
-    margin-right: 30px;
-    margin-left: -20px;
+    margin: 0 5px;
     color: black;
 }
 
@@ -118,7 +140,20 @@ body {
     color: orange;
 }
 
+/* Hide the sidebar while it is closed, so the end of a long name does not peek in at the left edge */
+@media (max-width: 767px) {
+    #wrapper:not(.toggled) .sidebar-nav {
+        visibility: hidden;
+        transition: visibility 0s 0.5s;
+    }
+}
+
 @media (min-width: 768px) {
+    #wrapper.toggled .sidebar-nav {
+        visibility: hidden;
+        transition: visibility 0s 0.5s;
+    }
+
     #wrapper {
         padding-left: 250px;
     }
@@ -167,6 +202,13 @@ body {
 #bio {
     margin-top: 30px;
     height: 40%;
+}
+
+/* On wide screens, line the first line of the bio up with the name */
+@media (min-width: 992px) {
+    #bio {
+        margin-top: 87px;
+    }
 }
 
 #bio a {
