@@ -89,16 +89,18 @@ body {
     width: 150px;
 }
 
+/* Icons in one centered row with a small, even gap */
 .sidebar-nav > .icon {
-    white-space: nowrap;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
     margin-bottom: 8px;
 }
 
 .sidebar-nav > .icon a i {
     font-size: 24px;
     line-height: 30px;
-    margin: 0 4px;
+    margin: 0;
     color: #333333; /* same as the name */
 }
 
