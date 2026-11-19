@@ -6,8 +6,8 @@
 
 :root {
     --theme-color: green;
-    --link-color: #7fbfa3;       /* cool sage green */
-    --link-hover-color: #e6afca; /* matching light pink */
+    --link-color: #e6afca;       /* light pink */
+    --link-hover-color: #7fbfa3; /* cool sage green, on hover and click */
 }
 
 body {
@@ -224,8 +224,10 @@ body {
     border-bottom: 1px dotted;
 }
 
-/* On hover, links turn pink (no box behind them) */
-#bio a:hover {
+/* On hover or click, links turn green (no box behind them) */
+#bio a:hover,
+#bio a:focus,
+#bio a:active {
     color: var(--link-hover-color);
     background-color: transparent;
     text-decoration: none;
@@ -257,7 +259,9 @@ body {
     border-bottom: 1px dotted;
 }
 
-.publication a:hover {
+.publication a:hover,
+.publication a:focus,
+.publication a:active {
     color: var(--link-hover-color);
     background-color: transparent;
     text-decoration: none;
